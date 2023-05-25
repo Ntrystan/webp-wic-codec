@@ -20,16 +20,8 @@ DEFAULT_BUILD=0
 opts, args = getopt.gnu_getopt(sys.argv[1:], "", ["build=", "company="])
 assert len(args) == 0
 opts = dict(opts)
-if opts.has_key('--build'):
-    build = int(opts['--build'])
-else:
-    build = DEFAULT_BUILD
-    
-if opts.has_key('--company'):
-    company = opts['--company']
-else:
-    company = DEFAULT_COMPANY
-
+build = int(opts['--build']) if opts.has_key('--build') else DEFAULT_BUILD
+company = opts['--company'] if opts.has_key('--company') else DEFAULT_COMPANY
 version_h = file('src\\version.h', 'w')
 version_h.writelines([
     '/*\n',
